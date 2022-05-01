@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisando números</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, rgb(17, 108, 194), rgb(0, 33, 77));
+        }
+        header{
+            margin: auto;
+            color: white;
+            max-width: 800px;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section{
+            background-color: white;
+            max-width: 500px;
+            min-width: 320px;
+            height: 60%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 3px 1px 8px;
+        }
+        div{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            padding: 10px;
+          
+        }
+        .caixa1{
+            padding-top: 20px;
+        }
+
+        footer{
+            margin: auto;
+            color: white;
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        select{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analisando números</h1>
+    </header>
+    <section>
+        <div class="caixa1" id="caixa1">
+          Numero(entre 1 e 100): <input type="number" id="num"> <input type="button" value="adicionar" id="adde" onclick="add()">
+        </div>
+        <div>
+            <select name="select" id="tabu" size="10">
+            </select>
+        </div>
+        <div><input type="button" value="finalizar" id="finalizar" onclick="finalizar()"></div>
+        <div id="res">oi</div>
+    </section>
+    <footer>
+        <p>&copy; Direitos reservados</p>
+    </footer>
+    <script>
+             var res = document.getElementById("res");
+             var num = document.getElementById ("num");
+             var lista = document.getElementById ("tabu")
+             var valores = [ ]
+           
+            function isnumero(n){  // função criada para saber se o numero esta entre o 1  e o 100
+                if(Number(n) >= 1 && Number(n) <= 100){
+                    return true
+                } 
+                else{
+                    return false
+                }
+            }
+            function inlista(n, l) {  // para saber se o valor foi ou não encontrado na lista
+                if (l.indexOf(Number(n)) != -1){
+                    return true
+                }   
+                else{
+                    return false
+                }
+            }
+            function add() {
+                if(isnumero(num.value) && !inlista(num.value, valores)) {  // função para saber se é um numero e se ja não esta na lista 
+                    valores.push(Number(num.value)) // adiciona o numero aos vetores caso ele n esteja
+                    let item = document.createElement("option") // cria uma option com o numero colocado 
+                    item.text = `valor ${num.value} adicionado` // mostra a mensagem de recebimento do numero
+                    lista.appendChild(item) //adciona a option
+                    res.innerHTML =' '
+                } 
+                else {
+                window.alert("Valor inválido ou já encontrado na lista.")
+                }
+                num.value = ' ' //esvaziar a caixa apos colocar o numero
+                num.focus() //foca a caixa novamente para a nova adição de numeros 
+            }
+            
+            function finalizar(){ // função para finalizar os valores no select
+                if (valores.length == 0){  // verifica se a array esta vazia
+                    alert("adicione valores antes de finalizar")
+                }
+                else{
+                    let tot = valores.length // saber quantos elementos o vetor tem 
+                    let maior = valores[0] // declara o maior valor sendo o primeiro
+                    let menor = valores[0] // declara o menor valor sendo o primeiro
+                    let soma = 0
+                    let media = 0 
+                    for (let pos in valores) {
+                        soma += valores[pos] // realiza a soma dos valores apos eles serem inseridos
+                        if (valores[pos] > maior) { // se o valor a ser colocado for maior que o primeiro posto como maior o novo valor é o maior
+                            maior = valores[pos]
+                        }
+                        if (valores[pos] < menor) {// se o valor a ser colocado for menor que o primeiro posto como menor o novo valor é o menor
+                            menor = valores[pos]
+                        }
+                    }
+                    media =  soma / tot  // realiza a media 
+                    res.innerHTML = ' '
+                    res.innerHTML += `<p>Ao todo, temos ${tot} números cadastrados</p>`
+                    res.innerHTML += `<p>O maior valor informado foi o ${maior}</p>`
+                    res.innerHTML += `<p>E o menor valor informado foi ${menor}</p>`
+                    res.innerHTML += `<p>Somando os valores, temos ${soma}</p>`
+                    res.innerHTML += `<p>A media dos valores é ${media}</p>`
+                }
+            }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos contar</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, rgb(17, 108, 194), rgb(0, 33, 77));
+        }
+        header{
+            margin: auto;
+            color: white;
+            max-width: 800px;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section{
+            background-color: white;
+            max-width: 500px;
+            min-width: 320px;
+            height: 60%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 3px 1px 8px;
+        }
+        div{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            padding: 10px;
+          
+        }
+        .caixa1{
+            padding-top: 20px;
+        }
+
+        footer{
+            margin: auto;
+            color: white;
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vamos contar</h1>
+    </header>
+    <section>
+        <div class="caixa1" id="caixa1">
+          Inicio: <input type="number" id="inicio">
+        </div>
+        <div class="caixa2" id="caixa2">
+           Fim: <input type="number" id="fim">
+        </div>
+        <div class="caixa3" id="caixa3">
+           Passo: <input type="number" id="passo">
+        </div>
+        <div class="caixa4" id="caixa4">
+            <input type="button" value="contar" id="contar" onclick="contar()">
+        </div>
+        <div class="caixa5" id="res">
+            Digite!
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Direitos reservados</p>
+    </footer>
+    <script>
+        function contar()
+        {
+            var inicio = document.getElementById("inicio");
+            var fim = document.getElementById("fim");
+            var passo = document.getElementById("passo");
+            var res = document.getElementById("res");
+            var n1 = Number(inicio.value);
+            var n2 = Number(fim.value);
+            var n3 = Number(passo.value);
+            res.innerHTML = "calculando<br>" 
+            if(n3 == 0) {
+                    window.alert('Passo inválido! considerando PASSO 1')
+                    n3 = 1
+            }
+            if(n1 == 0 || n2 == 0) {
+                    res.innerHTML = 'Impossivel Contar!'
+            }
+            else if(n1 < n2) {
+                for (var n1; n1 <= n2; n1+=n3) 
+                {
+                    res.innerHTML += `${n1}..`
+                } 
+                res.innerHTML += 'FIM'
+            } 
+           else {
+                 for(var n1; n1>= n2; n1-=n3) 
+                 {
+                res.innerText += ` ${i} -> `
+                }
+                res.innerHTML += 'FIM'
+        }
+        }
+    </script>
+</body>
+</html>

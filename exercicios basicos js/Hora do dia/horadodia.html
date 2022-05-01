@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hora do dia</title>
+    <style>
+        body{
+            background-color: rgb(1, 82, 82);
+        }
+        header{
+            position: absolute;
+            top: 14%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        section{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            min-width: 320px;
+            height: 60%;
+            margin: auto;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 3px 1px 8px;
+        }
+        .caixa1{
+            padding: 10px;
+            margin: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        footer{
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        img{
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+        #caixa2{
+            position: absolute;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body onload="carregar()">
+    <header>
+        <h1>Hora do Dia</h1>
+    </header>
+    <section>
+        <div class="caixa1" id="caixa1"></div>
+        <div id="caixa2"><img id="image" src="" alt=""></div>
+    </section>
+    <footer>
+        <p>&copy; Direitos reservados</p>
+    </footer>
+    <script>
+        function carregar(){
+            var caixa1 = document.getElementById("caixa1");
+            var image = document.getElementById("image");
+            var data = new Date()
+            var hoje = data.getHours()
+            caixa1.innerHTML = `Agora são ${hoje} horas.`
+            if(hoje >= 0 && hoje <12)  {
+                //bom dia
+                image.src = "img/dia.jpeg"
+                document.body.style.backgroundColor = '#60A4BF';
+            }
+            else if(hoje >= 12 && hoje < 18){
+                // boa tarde
+                image.src = "img/tarde.jpeg"
+                document.body.style.backgroundColor = '#F2C185';
+            }
+            else{
+                // boa noite
+                image.src = "img/noite.jpeg"
+                document.body.style.backgroundColor = '#0A2140';
+            }
+        }       
+    </script>
+</body>
+</html>
